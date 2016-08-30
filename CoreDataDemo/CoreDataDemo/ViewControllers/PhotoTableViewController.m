@@ -1,5 +1,5 @@
 //
-//  AssetsTableViewController.m
+//  PhotoTableViewController.m
 //  CoreDataDemo
 //
 //  Created by PeterLin on 16/8/29.
@@ -8,24 +8,52 @@
 
 #import "PhotoTableViewController.h"
 #import "Photo.h"
+#import "Usage.h"
+#import <CoreData/CoreData.h>
+#import "UIImageView+WebCache.h"
 
-static NSInteger amountToImport = 200;
-static BOOL addRatingRecords = YES;
+static NSInteger amountToImport = 50;
+static BOOL addUsageRecords = YES;
 
-@interface PhotoTableViewController ()
-
+@interface PhotoTableViewController () <
+    NSFetchedResultsControllerDelegate>
+@property (nonatomic, strong) NSFetchedResultsController *fetchResultsController;
 @end
 
 @implementation PhotoTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.title = @"Photos";
+    [self configureView];
+}
+
+- (void)configureView {
+     self.fetchResultsController = [self photoFetchedResultControllerFor:self.city];
+}
+
+- (NSFetchedResultsController *)photoFetchedResultControllerFor:(NSString *)city {
+    if (!self.fetchResultsController) {
+        self.fetchResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:[self photoFetchRequest:city] managedObjectContext:self.coreDataStack.mainContext sectionNameKeyPath:nil cacheName:nil];
+        self.fetchResultsController.delegate = self;
+    }
+    NSError *error = nil;
+    if (![self.fetchResultsController performFetch:&error]) {
+        NSLog(@"Error:%@",error);
+        abort();
+    }
+    return  self.fetchResultsController;
+}
+
+- (NSFetchRequest *)photoFetchRequest:(NSString *)city {
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"uploadDate" ascending:YES];
+    fetchRequest.sortDescriptors = @[sortDescriptor];
+    if (city) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"city == %@",city];
+        fetchRequest.predicate = predicate;
+    }
+    return fetchRequest;
 }
 
 #pragma mark - Actions
@@ -43,11 +71,11 @@ static BOOL addRatingRecords = YES;
         importRequire = YES;
     }
     
-    if (!importRequire && addRatingRecords) {
-        NSFetchRequest *ratingFetch = [NSFetchRequest fetchRequestWithEntityName:@"Rating"];
+    if (!importRequire && addUsageRecords) {
+        NSFetchRequest *usageFetch = [NSFetchRequest fetchRequestWithEntityName:@"Rating"];
         NSError *ratingError = nil;
-        NSUInteger ratingCount = [self.coreDataStack.mainContext countForFetchRequest:ratingFetch error:&ratingError];
-        if (ratingCount == 0) {
+        NSUInteger usageCount = [self.coreDataStack.mainContext countForFetchRequest:usageFetch error:&ratingError];
+        if (usageCount == 0) {
             importRequire = YES;
         }
     }
@@ -75,55 +103,90 @@ static BOOL addRatingRecords = YES;
     }
     
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.coreDataStack.mainContext];
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"yyyy-MM-dd";
 
     NSInteger counter = 0;
-    
-    
-    
- 
-    
-    
-//    @property (nullable, nonatomic, retain) NSDate *uploadDate;
-//    @property (nullable, nonatomic, retain) NSNumber *width;
-//    @property (nullable, nonatomic, retain) NSSet<NSManagedObject *> *usage;
 
     for (NSDictionary *jsonDict in jsonArray) {
         counter ++;
         NSString *city = jsonDict[@"city"];
-        NSTimeInterval startDateStamp = [jsonDict[@"ori_time"] doubleValue];
+        NSTimeInterval createDateStamp = [jsonDict[@"ori_time"] doubleValue];
         NSString *photoID = jsonDict[@"id"];
-        NSString *imageURL = [jsonDict valueForKeyPath:@"thumb.l"];
-        NSString *thumbURL = [jsonDict valueForKey:@"thumb.s2"];
-        CGFloat height = [jsonDict[@"height"] floatValue];
-        CGFloat width = [jsonDict[@"width"] floatValue];
+        NSString *image = [jsonDict valueForKeyPath:@"thumb.l"];
+        NSString *thumb = [jsonDict valueForKeyPath:@"thumb.s2"];
+        NSNumber *height = jsonDict[@"height"];
+        NSNumber *width = jsonDict[@"width"];
         NSTimeInterval uploadDateStamp = [jsonDict[@"created_at"] doubleValue];
+        
+        Photo *photo = [[Photo alloc] initWithEntity:entity insertIntoManagedObjectContext:self.coreDataStack.mainContext];
+        photo.photoID = photoID;
+        photo.city = city;
+        photo.createDate = [NSDate dateWithTimeIntervalSince1970:createDateStamp];
+        photo.uploadDate = [NSDate dateWithTimeIntervalSince1970:uploadDateStamp];
+        photo.image = image;
+        photo.thumb = thumb;
+        photo.height = height;
+        photo.width = width;
+        
+        if (addUsageRecords) {
+            [self addUsagesRecordsToPhoto:photo];
+        }
+        
+        if (counter == records) {
+            break;
+        }
+        
+        if (counter % 20 == 0) {
+            [self.coreDataStack saveContext];
+            [self.coreDataStack.mainContext reset];
+            NSLog(@"save %%20");
+        }
     }
+    NSLog(@"last save");
+    [self.coreDataStack saveContext];
+    [self.coreDataStack.mainContext reset];
 }
+
+- (void)addUsagesRecordsToPhoto:(Photo *)photo {
+    NSInteger numberOfSales = 1000 + arc4random_uniform(5000);
+    for (NSInteger i = 0; i < numberOfSales; i ++) {
+        Usage *usage = [NSEntityDescription insertNewObjectForEntityForName:@"Usage" inManagedObjectContext:self.coreDataStack.mainContext];
+        usage.photo = photo;
+        usage.detail = [NSNumber numberWithUnsignedInteger:arc4random_uniform(5)];//@"Detail description of photo usage";
+        usage.date = [NSDate date];
+    }
+    NSLog(@"added %ld usages",photo.usage.count);
+}
+
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return [self.fetchResultsController.sections count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    return [self.fetchResultsController.sections[section] numberOfObjects];
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"photoCell" forIndexPath:indexPath];
     
-    // Configure the cell...
-    
+    Photo *photo = [self.fetchResultsController objectAtIndexPath:indexPath];
+
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd";
+
+    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:photo.thumb]];
+    cell.textLabel.text = [NSString stringWithFormat:@"Snap in %@ at %@",[dateFormatter stringFromDate:photo.createDate], photo.city];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Size: %@ * %@",[photo.width stringValue], [photo.height stringValue]];
     return cell;
 }
-*/
+
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView reloadData];
+}
 
 /*
 // Override to support conditional editing of the table view.

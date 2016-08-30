@@ -7,9 +7,11 @@
 //
 
 #import "AppDelegate.h"
-
+#import "CoreDataStack.h"
+#import "PhotoTableViewController.h"
+#import "CategoryTableViewController.h"
 @interface AppDelegate ()
-
+@property (nonatomic, strong) CoreDataStack *coreDataStack;
 @end
 
 @implementation AppDelegate
@@ -17,6 +19,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    self.coreDataStack = [[CoreDataStack alloc] init];
+    
+    UITabBarController *tabController = (UITabBarController *)self.window.rootViewController;
+    UINavigationController *employeeListNavigationController = tabController.viewControllers[0];
+    PhotoTableViewController *photoTableViewController = (PhotoTableViewController *)employeeListNavigationController.topViewController;
+    photoTableViewController.coreDataStack = self.coreDataStack;
+    
+    UINavigationController *departmentListNavigationController = tabController.viewControllers[1];
+    CategoryTableViewController *categoryTableViewController = (CategoryTableViewController *)departmentListNavigationController.topViewController;
+    categoryTableViewController.coreDataStack = self.coreDataStack;
+    
     return YES;
 }
 

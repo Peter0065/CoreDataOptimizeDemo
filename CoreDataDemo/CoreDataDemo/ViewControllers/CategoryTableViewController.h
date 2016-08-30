@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "CoreDataStack.h"
 @interface CategoryTableViewController : UITableViewController
-
+@property (nonatomic, strong) CoreDataStack *coreDataStack;
 @end

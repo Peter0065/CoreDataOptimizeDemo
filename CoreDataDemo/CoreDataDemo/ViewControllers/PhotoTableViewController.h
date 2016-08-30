@@ -1,5 +1,5 @@
 //
-//  AssetsTableViewController.h
+//  PhotoTableViewController.h
 //  CoreDataDemo
 //
 //  Created by PeterLin on 16/8/29.
@@ -11,4 +11,5 @@
 
 @interface PhotoTableViewController : UITableViewController
 @property (nonatomic, strong) CoreDataStack *coreDataStack;
+@property (nonatomic, copy) NSString *city;
 @end
