@@ -1,17 +1,19 @@
 //
-//  Rating.h
+//  Usage.h
 //  CoreDataDemo
 //
-//  Created by PeterLin on 16/8/29.
+//  Created by LinPeihuang on 16/8/30.
 //  Copyright © 2016年 LinPeihuang. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class Photo;
+
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Rating : NSManagedObject
+@interface Usage : NSManagedObject
 
 // Insert code here to declare functionality of your managed object subclass
 
@@ -19,4 +21,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-#import "Rating+CoreDataProperties.h"
+#import "Usage+CoreDataProperties.h"

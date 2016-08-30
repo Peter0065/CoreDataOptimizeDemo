@@ -1,14 +1,15 @@
 //
-//  Rating.m
+//  Usage.m
 //  CoreDataDemo
 //
-//  Created by PeterLin on 16/8/29.
+//  Created by LinPeihuang on 16/8/30.
 //  Copyright © 2016年 LinPeihuang. All rights reserved.
 //
 
-#import "Rating.h"
+#import "Usage.h"
+#import "Photo.h"
 
-@implementation Rating
+@implementation Usage
 
 // Insert code here to add functionality to your managed object subclass
 

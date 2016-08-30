@@ -2,7 +2,7 @@
 //  Photo.m
 //  CoreDataDemo
 //
-//  Created by PeterLin on 16/8/29.
+//  Created by LinPeihuang on 16/8/30.
 //  Copyright © 2016年 LinPeihuang. All rights reserved.
 //
 

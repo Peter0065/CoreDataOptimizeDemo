@@ -1,19 +1,20 @@
 //
-//  Rating+CoreDataProperties.m
+//  Usage+CoreDataProperties.m
 //  CoreDataDemo
 //
-//  Created by PeterLin on 16/8/29.
+//  Created by LinPeihuang on 16/8/30.
 //  Copyright © 2016年 LinPeihuang. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
 //  to delete and recreate this implementation file for your updated model.
 //
 
-#import "Rating+CoreDataProperties.h"
+#import "Usage+CoreDataProperties.h"
 
-@implementation Rating (CoreDataProperties)
+@implementation Usage (CoreDataProperties)
 
-@dynamic star;
 @dynamic date;
+@dynamic detail;
+@dynamic photo;
 
 @end

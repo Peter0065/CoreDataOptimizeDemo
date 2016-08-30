@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		316EC60C1D75421B0012C5DF /* Photo+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 316EC6051D75421B0012C5DF /* Photo+CoreDataProperties.m */; };
+		316EC60D1D75421B0012C5DF /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 316EC6071D75421B0012C5DF /* Photo.m */; };
+		316EC60E1D75421B0012C5DF /* Usage+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 316EC6091D75421B0012C5DF /* Usage+CoreDataProperties.m */; };
+		316EC60F1D75421B0012C5DF /* Usage.m in Sources */ = {isa = PBXBuildFile; fileRef = 316EC60B1D75421B0012C5DF /* Usage.m */; };
 		31E01C021D743DA60046A524 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E01C011D743DA60046A524 /* main.m */; };
 		31E01C051D743DA60046A524 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E01C041D743DA60046A524 /* AppDelegate.m */; };
 		31E01C0B1D743DA70046A524 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31E01C091D743DA60046A524 /* Main.storyboard */; };
@@ -34,10 +38,6 @@
 		AC741AD01D74720600C33F35 /* CategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC741ACF1D74720600C33F35 /* CategoryTableViewController.m */; };
 		AC741AD41D74735100C33F35 /* CoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = AC741AD31D74735100C33F35 /* CoreDataStack.m */; };
 		AC741AD71D74738B00C33F35 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AC741AD51D74738B00C33F35 /* Model.xcdatamodeld */; };
-		AC741AE01D7478A700C33F35 /* Photo+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AC741AD91D7478A700C33F35 /* Photo+CoreDataProperties.m */; };
-		AC741AE11D7478A700C33F35 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = AC741ADB1D7478A700C33F35 /* Photo.m */; };
-		AC741AE21D7478A700C33F35 /* Rating+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AC741ADD1D7478A700C33F35 /* Rating+CoreDataProperties.m */; };
-		AC741AE31D7478A700C33F35 /* Rating.m in Sources */ = {isa = PBXBuildFile; fileRef = AC741ADF1D7478A700C33F35 /* Rating.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +51,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		316EC6041D75421B0012C5DF /* Photo+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Photo+CoreDataProperties.h"; sourceTree = "<group>"; };
+		316EC6051D75421B0012C5DF /* Photo+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Photo+CoreDataProperties.m"; sourceTree = "<group>"; };
+		316EC6061D75421B0012C5DF /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		316EC6071D75421B0012C5DF /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
+		316EC6081D75421B0012C5DF /* Usage+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Usage+CoreDataProperties.h"; sourceTree = "<group>"; };
+		316EC6091D75421B0012C5DF /* Usage+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Usage+CoreDataProperties.m"; sourceTree = "<group>"; };
+		316EC60A1D75421B0012C5DF /* Usage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Usage.h; sourceTree = "<group>"; };
+		316EC60B1D75421B0012C5DF /* Usage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Usage.m; sourceTree = "<group>"; };
 		31E01BFD1D743DA60046A524 /* CoreDataDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31E01C011D743DA60046A524 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		31E01C031D743DA60046A524 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -103,14 +111,6 @@
 		AC741AD21D74735100C33F35 /* CoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataStack.h; sourceTree = "<group>"; };
 		AC741AD31D74735100C33F35 /* CoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataStack.m; sourceTree = "<group>"; };
 		AC741AD61D74738B00C33F35 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		AC741AD81D7478A700C33F35 /* Photo+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Photo+CoreDataProperties.h"; sourceTree = "<group>"; };
-		AC741AD91D7478A700C33F35 /* Photo+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Photo+CoreDataProperties.m"; sourceTree = "<group>"; };
-		AC741ADA1D7478A700C33F35 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
-		AC741ADB1D7478A700C33F35 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
-		AC741ADC1D7478A700C33F35 /* Rating+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Rating+CoreDataProperties.h"; sourceTree = "<group>"; };
-		AC741ADD1D7478A700C33F35 /* Rating+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Rating+CoreDataProperties.m"; sourceTree = "<group>"; };
-		AC741ADE1D7478A700C33F35 /* Rating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rating.h; sourceTree = "<group>"; };
-		AC741ADF1D7478A700C33F35 /* Rating.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rating.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,14 +190,14 @@
 		AC741A8E1D74707500C33F35 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				AC741AD81D7478A700C33F35 /* Photo+CoreDataProperties.h */,
-				AC741AD91D7478A700C33F35 /* Photo+CoreDataProperties.m */,
-				AC741ADA1D7478A700C33F35 /* Photo.h */,
-				AC741ADB1D7478A700C33F35 /* Photo.m */,
-				AC741ADC1D7478A700C33F35 /* Rating+CoreDataProperties.h */,
-				AC741ADD1D7478A700C33F35 /* Rating+CoreDataProperties.m */,
-				AC741ADE1D7478A700C33F35 /* Rating.h */,
-				AC741ADF1D7478A700C33F35 /* Rating.m */,
+				316EC6041D75421B0012C5DF /* Photo+CoreDataProperties.h */,
+				316EC6051D75421B0012C5DF /* Photo+CoreDataProperties.m */,
+				316EC6061D75421B0012C5DF /* Photo.h */,
+				316EC6071D75421B0012C5DF /* Photo.m */,
+				316EC6081D75421B0012C5DF /* Usage+CoreDataProperties.h */,
+				316EC6091D75421B0012C5DF /* Usage+CoreDataProperties.m */,
+				316EC60A1D75421B0012C5DF /* Usage.h */,
+				316EC60B1D75421B0012C5DF /* Usage.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -378,7 +378,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC741AE21D7478A700C33F35 /* Rating+CoreDataProperties.m in Sources */,
 				AC741ABF1D7470CC00C33F35 /* UIImage+GIF.m in Sources */,
 				AC741ABA1D7470CC00C33F35 /* SDWebImageDownloader.m in Sources */,
 				AC741AD41D74735100C33F35 /* CoreDataStack.m in Sources */,
@@ -387,14 +386,15 @@
 				AC741AC31D7470CC00C33F35 /* UIImageView+WebCache.m in Sources */,
 				AC741AB91D7470CC00C33F35 /* SDWebImageDecoder.m in Sources */,
 				31E01C051D743DA60046A524 /* AppDelegate.m in Sources */,
-				AC741AE01D7478A700C33F35 /* Photo+CoreDataProperties.m in Sources */,
+				316EC60C1D75421B0012C5DF /* Photo+CoreDataProperties.m in Sources */,
+				316EC60F1D75421B0012C5DF /* Usage.m in Sources */,
 				AC741AB81D7470CC00C33F35 /* SDWebImageCompat.m in Sources */,
 				AC741AD71D74738B00C33F35 /* Model.xcdatamodeld in Sources */,
+				316EC60E1D75421B0012C5DF /* Usage+CoreDataProperties.m in Sources */,
 				31E01C021D743DA60046A524 /* main.m in Sources */,
-				AC741AE11D7478A700C33F35 /* Photo.m in Sources */,
+				316EC60D1D75421B0012C5DF /* Photo.m in Sources */,
 				AC741AC11D7470CC00C33F35 /* UIImage+WebP.m in Sources */,
 				AC741AB61D7470CC00C33F35 /* NSData+ImageContentType.m in Sources */,
-				AC741AE31D7478A700C33F35 /* Rating.m in Sources */,
 				AC741ABB1D7470CC00C33F35 /* SDWebImageDownloaderOperation.m in Sources */,
 				AC741ABC1D7470CC00C33F35 /* SDWebImageManager.m in Sources */,
 				AC741ACD1D7471FA00C33F35 /* PhotoTableViewController.m in Sources */,

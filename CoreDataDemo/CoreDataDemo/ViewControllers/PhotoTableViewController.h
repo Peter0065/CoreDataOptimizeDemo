@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CoreDataStack.h"
 
 @interface PhotoTableViewController : UITableViewController
-
+@property (nonatomic, strong) CoreDataStack *coreDataStack;
 @end

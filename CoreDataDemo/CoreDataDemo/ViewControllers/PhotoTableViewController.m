@@ -7,6 +7,10 @@
 //
 
 #import "PhotoTableViewController.h"
+#import "Photo.h"
+
+static NSInteger amountToImport = 200;
+static BOOL addRatingRecords = YES;
 
 @interface PhotoTableViewController ()
 
@@ -30,9 +34,74 @@
 }
 
 - (void)importJSONSeedDataIfNeeded {
+    BOOL importRequire = NO;
     
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
+    NSError *error = nil;
+    NSUInteger photoCount = [self.coreDataStack.mainContext countForFetchRequest:fetchRequest error:&error];
+    if (photoCount < amountToImport) {
+        importRequire = YES;
+    }
+    
+    if (!importRequire && addRatingRecords) {
+        NSFetchRequest *ratingFetch = [NSFetchRequest fetchRequestWithEntityName:@"Rating"];
+        NSError *ratingError = nil;
+        NSUInteger ratingCount = [self.coreDataStack.mainContext countForFetchRequest:ratingFetch error:&ratingError];
+        if (ratingCount == 0) {
+            importRequire = YES;
+        }
+    }
+    
+    if (importRequire) {
+        NSError *fetchError = nil;
+        NSArray *results = [self.coreDataStack.mainContext executeFetchRequest:fetchRequest error:&fetchError];
+        for (Photo *photo in results) {
+            [self.coreDataStack.mainContext deleteObject:photo];
+        }
+        
+        [self.coreDataStack saveContext];
+        NSInteger records = MAX(0, MIN(500, amountToImport));
+        [self importJSONSeedData:records];
+    }
 }
 
+- (void)importJSONSeedData:(NSInteger)records {
+    NSURL *jsonURL = [[NSBundle mainBundle] URLForResource:@"seed" withExtension:@"json"];
+    NSData *jsonData = [NSData dataWithContentsOfURL:jsonURL];
+    NSError *error = nil;
+    NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+    if (error) {
+        NSLog(@"JSONSerialization Error:%@",error);
+    }
+    
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.coreDataStack.mainContext];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd";
+
+    NSInteger counter = 0;
+    
+    
+    
+ 
+    
+    
+//    @property (nullable, nonatomic, retain) NSDate *uploadDate;
+//    @property (nullable, nonatomic, retain) NSNumber *width;
+//    @property (nullable, nonatomic, retain) NSSet<NSManagedObject *> *usage;
+
+    for (NSDictionary *jsonDict in jsonArray) {
+        counter ++;
+        NSString *city = jsonDict[@"city"];
+        NSTimeInterval startDateStamp = [jsonDict[@"ori_time"] doubleValue];
+        NSString *photoID = jsonDict[@"id"];
+        NSString *imageURL = [jsonDict valueForKeyPath:@"thumb.l"];
+        NSString *thumbURL = [jsonDict valueForKey:@"thumb.s2"];
+        CGFloat height = [jsonDict[@"height"] floatValue];
+        CGFloat width = [jsonDict[@"width"] floatValue];
+        NSTimeInterval uploadDateStamp = [jsonDict[@"created_at"] doubleValue];
+    }
+}
 
 #pragma mark - Table view data source
 
