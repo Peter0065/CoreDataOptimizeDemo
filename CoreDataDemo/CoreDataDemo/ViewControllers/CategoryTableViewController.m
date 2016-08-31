@@ -18,6 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"Category List";
     self.items = [self totalPhotosPerCity];
     
 }

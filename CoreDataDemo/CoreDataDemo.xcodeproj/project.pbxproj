@@ -38,6 +38,8 @@
 		AC741AD01D74720600C33F35 /* CategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC741ACF1D74720600C33F35 /* CategoryTableViewController.m */; };
 		AC741AD41D74735100C33F35 /* CoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = AC741AD31D74735100C33F35 /* CoreDataStack.m */; };
 		AC741AD71D74738B00C33F35 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AC741AD51D74738B00C33F35 /* Model.xcdatamodeld */; };
+		AC741AE81D770F8B00C33F35 /* PhotoViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC741AE71D770F8B00C33F35 /* PhotoViewCell.m */; };
+		AC741AEB1D77153E00C33F35 /* PhotoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC741AEA1D77153E00C33F35 /* PhotoDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +113,10 @@
 		AC741AD21D74735100C33F35 /* CoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataStack.h; sourceTree = "<group>"; };
 		AC741AD31D74735100C33F35 /* CoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataStack.m; sourceTree = "<group>"; };
 		AC741AD61D74738B00C33F35 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		AC741AE61D770F8B00C33F35 /* PhotoViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewCell.h; sourceTree = "<group>"; };
+		AC741AE71D770F8B00C33F35 /* PhotoViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewCell.m; sourceTree = "<group>"; };
+		AC741AE91D77153E00C33F35 /* PhotoDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoDetailViewController.h; sourceTree = "<group>"; };
+		AC741AEA1D77153E00C33F35 /* PhotoDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +215,8 @@
 				AC741ACC1D7471FA00C33F35 /* PhotoTableViewController.m */,
 				AC741ACE1D74720600C33F35 /* CategoryTableViewController.h */,
 				AC741ACF1D74720600C33F35 /* CategoryTableViewController.m */,
+				AC741AE91D77153E00C33F35 /* PhotoDetailViewController.h */,
+				AC741AEA1D77153E00C33F35 /* PhotoDetailViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -216,6 +224,8 @@
 		AC741A911D74707500C33F35 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AC741AE61D770F8B00C33F35 /* PhotoViewCell.h */,
+				AC741AE71D770F8B00C33F35 /* PhotoViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -384,12 +394,14 @@
 				AC741AC21D7470CC00C33F35 /* UIImageView+HighlightedWebCache.m in Sources */,
 				AC741ABE1D7470CC00C33F35 /* UIButton+WebCache.m in Sources */,
 				AC741AC31D7470CC00C33F35 /* UIImageView+WebCache.m in Sources */,
+				AC741AEB1D77153E00C33F35 /* PhotoDetailViewController.m in Sources */,
 				AC741AB91D7470CC00C33F35 /* SDWebImageDecoder.m in Sources */,
 				31E01C051D743DA60046A524 /* AppDelegate.m in Sources */,
 				316EC60C1D75421B0012C5DF /* Photo+CoreDataProperties.m in Sources */,
 				316EC60F1D75421B0012C5DF /* Usage.m in Sources */,
 				AC741AB81D7470CC00C33F35 /* SDWebImageCompat.m in Sources */,
 				AC741AD71D74738B00C33F35 /* Model.xcdatamodeld in Sources */,
+				AC741AE81D770F8B00C33F35 /* PhotoViewCell.m in Sources */,
 				316EC60E1D75421B0012C5DF /* Usage+CoreDataProperties.m in Sources */,
 				31E01C021D743DA60046A524 /* main.m in Sources */,
 				316EC60D1D75421B0012C5DF /* Photo.m in Sources */,

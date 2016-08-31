@@ -127,8 +127,8 @@ static BOOL addUsageRecords = YES;
 }
 
 - (void)addUsagesRecordsToPhoto:(Photo *)photo {
-    NSInteger numberOfSales = 100 + arc4random_uniform(500);
-    for (NSInteger i = 0; i < numberOfSales; i ++) {
+    NSInteger numberOfUsages = 500 + arc4random_uniform(1000);
+    for (NSInteger i = 0; i < numberOfUsages; i ++) {
         Usage *usage = [NSEntityDescription insertNewObjectForEntityForName:@"Usage" inManagedObjectContext:self.coreDataStack.mainContext];
         usage.photo = photo;
         usage.detail = [NSNumber numberWithUnsignedInteger:arc4random_uniform(5)];//@"Detail description of photo usage";

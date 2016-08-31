@@ -11,7 +11,8 @@
 #import "Usage.h"
 #import <CoreData/CoreData.h>
 #import "UIImageView+WebCache.h"
-
+#import "PhotoViewCell.h"
+#import "PhotoDetailViewController.h"
 
 @interface PhotoTableViewController () <
     NSFetchedResultsControllerDelegate>
@@ -22,13 +23,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"Photos";
     
-    UIButton *headButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    headButton.frame = CGRectMake(0, 0, 320, 44);
-    headButton.backgroundColor = [UIColor redColor];
-    self.tableView.tableHeaderView = headButton;
-    [headButton addTarget:self action:@selector(import) forControlEvents:UIControlEventTouchUpInside];
+    self.title = @"Photos List";
+    
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
+    NSError *error = nil;
+    NSUInteger photoCount = [self.coreDataStack.mainContext countForFetchRequest:fetchRequest error:&error];
+    if (!(photoCount > 0)) {
+        UIButton *headButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        headButton.frame = CGRectMake(0, 0, 320, 30);
+        [headButton setTitle:@"Improt Data" forState:UIControlStateNormal];
+        headButton.backgroundColor = [UIColor redColor];
+        self.tableView.tableHeaderView = headButton;
+        [headButton addTarget:self action:@selector(import) forControlEvents:UIControlEventTouchUpInside];
+    }
+
+
     [self configureView];
 }
 
@@ -76,16 +86,12 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"photoCell" forIndexPath:indexPath];
+    PhotoViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"photoCell" forIndexPath:indexPath];
     
     Photo *photo = [self.fetchResultsController objectAtIndexPath:indexPath];
 
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"yyyy-MM-dd";
-
-    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:photo.thumb]];
-    cell.textLabel.text = [NSString stringWithFormat:@"Snap in %@ at %@",[dateFormatter stringFromDate:photo.createDate], photo.city];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Size: %@ * %@",[photo.width stringValue], [photo.height stringValue]];
+    cell.photo = photo;
+    
     return cell;
 }
 
@@ -128,14 +134,17 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"SeguePhotoListToPhotoDetail"]) {
+        PhotoDetailViewController *detailVC = [segue destinationViewController];
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        detailVC.photo = [self.fetchResultsController objectAtIndexPath:indexPath];
+    }
 }
-*/
+
 
 @end
