@@ -7,21 +7,47 @@
 //
 
 #import "CategoryTableViewController.h"
+#import "Photo.h"
+#import "PhotoTableViewController.h"
 
 @interface CategoryTableViewController ()
-
+@property (nonatomic, copy) NSArray *items;
 @end
 
 @implementation CategoryTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.items = [self totalPhotosPerCity];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+}
+
+- (NSArray *)totalPhotosPerCity {
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
+    NSError *error = nil;
+    NSArray *fetchObjects = [self.coreDataStack.mainContext executeFetchRequest:fetchRequest error:&error];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    if (!error) {
+        NSMutableDictionary *cityPhotoDict = [NSMutableDictionary dictionary];
+        for (Photo *photo in fetchObjects) {
+            NSInteger photoCityCount = [cityPhotoDict[photo.city] integerValue];
+            if (photoCityCount > 0) {
+                [cityPhotoDict setValue:@(photoCityCount + 1) forKey:photo.city];
+            } else {
+                [cityPhotoDict setValue:@1 forKey:photo.city];
+            }
+        }
+        
+        NSMutableArray *results = [NSMutableArray array];
+        [cityPhotoDict enumerateKeysAndObjectsUsingBlock:^(NSString *city , NSNumber *photoCount, BOOL * _Nonnull stop) {
+            NSDictionary *dict = @{@"city" : city , @"photoCount" : [photoCount stringValue]};
+            [results addObject:dict];
+        }];
+        return results;
+    } else {
+        NSLog(@"ERROR :%@",error);
+        return [NSArray array];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -31,25 +57,20 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    return [self.items count];
 }
 
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"categoryCell" forIndexPath:indexPath];
     
-    // Configure the cell...
+    NSDictionary *cityDict = self.items[indexPath.row];
+    
+    cell.textLabel.text = cityDict[@"city"];
+    cell.detailTextLabel.text = cityDict[@"photoCount"];
     
     return cell;
 }
-*/
 
 /*
 // Override to support conditional editing of the table view.
@@ -85,14 +106,18 @@
 }
 */
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"SegueCategoryListToPhotoList"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        NSDictionary *cityDictionary = self.items[indexPath.row];
+        NSString *city = cityDictionary[@"city"];
+        PhotoTableViewController *viewController = [segue destinationViewController];
+        viewController.coreDataStack = self.coreDataStack;
+        viewController.city = city;
+    }
 }
-*/
 
 @end
