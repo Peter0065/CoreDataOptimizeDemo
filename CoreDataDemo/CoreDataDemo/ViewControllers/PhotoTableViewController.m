@@ -10,7 +10,6 @@
 #import "Photo.h"
 #import "Usage.h"
 #import <CoreData/CoreData.h>
-#import "UIImageView+WebCache.h"
 #import "PhotoViewCell.h"
 #import "PhotoDetailViewController.h"
 
@@ -26,17 +25,17 @@
     
     self.title = @"Photos List";
     
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
-    NSError *error = nil;
-    NSUInteger photoCount = [self.coreDataStack.mainContext countForFetchRequest:fetchRequest error:&error];
-    if (!(photoCount > 0)) {
-        UIButton *headButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        headButton.frame = CGRectMake(0, 0, 320, 30);
-        [headButton setTitle:@"Improt Data" forState:UIControlStateNormal];
-        headButton.backgroundColor = [UIColor redColor];
-        self.tableView.tableHeaderView = headButton;
-        [headButton addTarget:self action:@selector(import) forControlEvents:UIControlEventTouchUpInside];
-    }
+//    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
+//    NSError *error = nil;
+//    NSUInteger photoCount = [self.coreDataStack.mainContext countForFetchRequest:fetchRequest error:&error];
+//    if (!(photoCount > 0)) {
+//        UIButton *headButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//        headButton.frame = CGRectMake(0, 0, 320, 30);
+//        [headButton setTitle:@"Improt Data" forState:UIControlStateNormal];
+//        headButton.backgroundColor = [UIColor redColor];
+//        self.tableView.tableHeaderView = headButton;
+//        [headButton addTarget:self action:@selector(import) forControlEvents:UIControlEventTouchUpInside];
+//    }
 
 
     [self configureView];

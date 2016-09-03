@@ -13,7 +13,7 @@
 #import "PhotoTableViewController.h"
 #import "CategoryTableViewController.h"
 
-static NSInteger amountToImport = 600;
+static NSInteger amountToImport = 200;
 static BOOL addUsageRecords = YES;
 
 @interface AppDelegate ()
@@ -47,12 +47,12 @@ static BOOL addUsageRecords = YES;
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
     NSError *error = nil;
     NSUInteger photoCount = [self.coreDataStack.mainContext countForFetchRequest:fetchRequest error:&error];
-    if (photoCount < amountToImport) {
+    if (photoCount != amountToImport) {
         importRequire = YES;
     }
     
     if (!importRequire && addUsageRecords) {
-        NSFetchRequest *usageFetch = [NSFetchRequest fetchRequestWithEntityName:@"Rating"];
+        NSFetchRequest *usageFetch = [NSFetchRequest fetchRequestWithEntityName:@"Usage"];
         NSError *ratingError = nil;
         NSUInteger usageCount = [self.coreDataStack.mainContext countForFetchRequest:usageFetch error:&ratingError];
         if (usageCount == 0) {
@@ -68,7 +68,7 @@ static BOOL addUsageRecords = YES;
         }
         
         [self.coreDataStack saveContext];
-        NSInteger records = MAX(0, MIN(500, amountToImport));
+        NSInteger records = MAX(0, MIN(600, amountToImport));
         [self importJSONSeedData:records];
     }
 }
@@ -91,8 +91,6 @@ static BOOL addUsageRecords = YES;
         NSString *city = jsonDict[@"city"];
         NSTimeInterval createDateStamp = [jsonDict[@"ori_time"] doubleValue];
         NSString *photoID = jsonDict[@"id"];
-        NSString *image = [jsonDict valueForKeyPath:@"thumb.l"];
-        NSString *thumb = [jsonDict valueForKeyPath:@"thumb.s2"];
         NSNumber *height = jsonDict[@"height"];
         NSNumber *width = jsonDict[@"width"];
         NSTimeInterval uploadDateStamp = [jsonDict[@"created_at"] doubleValue];
@@ -102,10 +100,19 @@ static BOOL addUsageRecords = YES;
         photo.city = city;
         photo.createDate = [NSDate dateWithTimeIntervalSince1970:createDateStamp];
         photo.uploadDate = [NSDate dateWithTimeIntervalSince1970:uploadDateStamp];
-        photo.image = image;
-        photo.thumb = thumb;
         photo.height = height;
         photo.width = width;
+        
+        NSString *imageName = [NSString stringWithFormat:@"scenery_%.2d",arc4random_uniform(14) + 1];
+        NSURL *imageURL = [[NSBundle mainBundle] URLForResource:imageName withExtension:@"jpg"];
+        NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+        photo.image = imageData;
+
+//        NSEntityDescription *originalImageEntity = [NSEntityDescription entityForName:@"Image" inManagedObjectContext:self.coreDataStack.mainContext];
+//        OriginalImage *originalImage = [[OriginalImage alloc] initWithEntity:originalImageEntity insertIntoManagedObjectContext:self.coreDataStack.mainContext];
+//        originalImage.image = imageData;
+//        photo.originalImage = originalImage;
+
         
         if (addUsageRecords) {
             [self addUsagesRecordsToPhoto:photo];
@@ -118,7 +125,7 @@ static BOOL addUsageRecords = YES;
         if (counter % 20 == 0) {
             [self.coreDataStack saveContext];
             [self.coreDataStack.mainContext reset];
-            NSLog(@"save %%20");
+//            NSLog(@"save %%20");
         }
     }
     NSLog(@"last save");
@@ -127,13 +134,30 @@ static BOOL addUsageRecords = YES;
 }
 
 - (void)addUsagesRecordsToPhoto:(Photo *)photo {
-    NSInteger numberOfUsages = 500 + arc4random_uniform(1000);
+    NSInteger numberOfUsages = 10 + arc4random_uniform(20);
     for (NSInteger i = 0; i < numberOfUsages; i ++) {
         Usage *usage = [NSEntityDescription insertNewObjectForEntityForName:@"Usage" inManagedObjectContext:self.coreDataStack.mainContext];
         usage.photo = photo;
         usage.detail = [NSNumber numberWithUnsignedInteger:arc4random_uniform(5)];//@"Detail description of photo usage";
         usage.date = [NSDate date];
     }
+}
+
+- (NSData *)imageData:(NSData *)imageData scaledToWidth:(CGFloat)width {
+    UIImage *image = [UIImage imageWithData:imageData];
+    CGFloat oldWidth = image.size.width;
+    CGFloat scaleFactor = width / oldWidth;
+    CGFloat newHight = image.size.width * scaleFactor;
+    CGSize newSize = CGSizeMake(width, newHight);
+    CGRect newRect = CGRectMake(0, 0, width, newHight);
+    
+    UIGraphicsBeginImageContext(newSize);
+    [image drawInRect:newRect];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    NSData *newImageData = UIImageJPEGRepresentation(newImage, 0.8);
+    return newImageData;
 }
 
 

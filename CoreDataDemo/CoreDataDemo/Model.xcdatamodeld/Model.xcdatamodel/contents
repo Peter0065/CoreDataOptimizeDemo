@@ -4,9 +4,8 @@
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="createDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="height" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="photoID" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="thumb" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uploadDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="width" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="usage" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Usage" inverseName="photo" inverseEntity="Usage" syncable="YES"/>
@@ -17,7 +16,7 @@
         <relationship name="photo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Photo" inverseName="usage" inverseEntity="Photo" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Photo" positionX="-45" positionY="0" width="128" height="180"/>
+        <element name="Photo" positionX="-45" positionY="0" width="128" height="165"/>
         <element name="Usage" positionX="-18" positionY="90" width="128" height="90"/>
     </elements>
 </model>

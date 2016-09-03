@@ -59,7 +59,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="89.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_asset_default" translatesAutoresizingMaskIntoConstraints="NO" id="HZJ-De-If2">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_asset_default" translatesAutoresizingMaskIntoConstraints="NO" id="HZJ-De-If2">
                                             <rect key="frame" x="10" y="10" width="60" height="69.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="60" id="5pA-TP-S34"/>

@@ -7,7 +7,6 @@
 //
 
 #import "PhotoDetailViewController.h"
-#import "UIImageView+WebCache.h"
 #import "Photo.h"
 @interface PhotoDetailViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
@@ -18,7 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.photo.image]];
+    self.imageView.image = [UIImage imageWithData:self.photo.image];
 }
 
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "PhotoViewCell.h"
-#import "UIImageView+WebCache.h"
 #import "Photo.h"
 
 @interface PhotoViewCell ()
@@ -21,12 +20,13 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.thumb.clipsToBounds = YES;
     // Initialization code
 }
 
 - (void)prepareForReuse {
     [super prepareForReuse];
-    [self.thumb sd_cancelCurrentImageLoad];
+   // [self.thumb sd_cancelCurrentImageLoad];
 }
 
 - (void)setPhoto:(Photo *)photo {
@@ -35,7 +35,7 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init]; //should reuse
     dateFormatter.dateFormat = @"yyyy-MM-dd";
 
-    [self.thumb sd_setImageWithURL:[NSURL URLWithString:photo.thumb] placeholderImage:self.defaultImage];
+    self.thumb.image = [UIImage imageWithData:photo.image];
     self.infoLabel.text = [NSString stringWithFormat:@"Snap in %@ at %@",[dateFormatter stringFromDate:photo.createDate], photo.city];
     self.sizeLabel.text = [NSString stringWithFormat:@"Size: %@ * %@",[photo.width stringValue], [photo.height stringValue]];
 }
