@@ -108,7 +108,8 @@ static BOOL addUsageRecords = NO;
         NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
         photo.image = imageData;
 
-//        photo.image = [self imageData:imageData scaledToWidth:60.f];
+//<step_1>
+        photo.thumb = [self imageData:imageData scaledToWidth:60.f];
 
 //        NSEntityDescription *originalImageEntity = [NSEntityDescription entityForName:@"Image" inManagedObjectContext:self.coreDataStack.mainContext];
 //        OriginalImage *originalImage = [[OriginalImage alloc] initWithEntity:originalImageEntity insertIntoManagedObjectContext:self.coreDataStack.mainContext];

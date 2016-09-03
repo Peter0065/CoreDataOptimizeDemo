@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSDate *uploadDate;
 @property (nullable, nonatomic, retain) NSNumber *width;
 @property (nullable, nonatomic, retain) NSSet<Usage *> *usage;
+//<step_1>
+@property (nullable, nonatomic, retain) NSData *thumb;
 
 @end
 

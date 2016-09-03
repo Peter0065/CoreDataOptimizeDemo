@@ -59,17 +59,27 @@
         NSLog(@"Error:%@",error);
         abort();
     }
+    
+//    NSLog(@"%@",[self.fetchResultsController.fetchedObjects firstObject]);
+//
+//    NSArray *result = [self.coreDataStack.mainContext executeFetchRequest:self.fetchResultsController.fetchRequest error:nil];
+//    NSLog(@"%@",[result firstObject]);
+
+    
     return  self.fetchResultsController;
 }
 
 - (NSFetchRequest *)photoFetchRequest:(NSString *)city {
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
+//    [fetchRequest setReturnsObjectsAsFaults:NO];
+    [fetchRequest setRelationshipKeyPathsForPrefetching:@[@"usage"]];
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"uploadDate" ascending:YES];
     fetchRequest.sortDescriptors = @[sortDescriptor];
     if (city) {
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"city == %@",city];
         fetchRequest.predicate = predicate;
     }
+
     return fetchRequest;
 }
 

@@ -35,7 +35,10 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init]; //should reuse
     dateFormatter.dateFormat = @"yyyy-MM-dd";
 
-    self.thumb.image = [UIImage imageWithData:photo.image];
+//<step_1>
+//    self.thumb.image = [UIImage imageWithData:photo.image];
+    self.thumb.image = [UIImage imageWithData:photo.thumb];
+
     self.infoLabel.text = [NSString stringWithFormat:@"Snap in %@ at %@",[dateFormatter stringFromDate:photo.createDate], photo.city];
     self.sizeLabel.text = [NSString stringWithFormat:@"Size: %@ * %@",[photo.width stringValue], [photo.height stringValue]];
 }
