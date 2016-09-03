@@ -10,6 +10,7 @@
 #import "CoreDataStack.h"
 #import "Photo.h"
 #import "Usage.h"
+#import "OriginalImage.h"
 #import "PhotoTableViewController.h"
 #import "CategoryTableViewController.h"
 
@@ -106,15 +107,16 @@ static BOOL addUsageRecords = NO;
         NSString *imageName = [NSString stringWithFormat:@"scenery_%.2d",arc4random_uniform(10) + 1];
         NSURL *imageURL = [[NSBundle mainBundle] URLForResource:imageName withExtension:@"jpg"];
         NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
-        photo.image = imageData;
+//        photo.image = imageData;
 
 //<step_1>
-        photo.thumb = [self imageData:imageData scaledToWidth:60.f];
+        photo.thumb = [self imageData:imageData scaledToWidth:60.f * 2];
 
-//        NSEntityDescription *originalImageEntity = [NSEntityDescription entityForName:@"Image" inManagedObjectContext:self.coreDataStack.mainContext];
-//        OriginalImage *originalImage = [[OriginalImage alloc] initWithEntity:originalImageEntity insertIntoManagedObjectContext:self.coreDataStack.mainContext];
-//        originalImage.image = imageData;
-//        photo.originalImage = originalImage;
+//<step_2>
+        NSEntityDescription *originalImageEntity = [NSEntityDescription entityForName:@"OriginalImage" inManagedObjectContext:self.coreDataStack.mainContext];
+        OriginalImage *originalImage = [[OriginalImage alloc] initWithEntity:originalImageEntity insertIntoManagedObjectContext:self.coreDataStack.mainContext];
+        originalImage.image = imageData;
+        photo.originalImage = originalImage;
 
         
         if (addUsageRecords) {
@@ -150,7 +152,7 @@ static BOOL addUsageRecords = NO;
     UIImage *image = [UIImage imageWithData:imageData];
     CGFloat oldWidth = image.size.width;
     CGFloat scaleFactor = width / oldWidth;
-    CGFloat newHight = image.size.width * scaleFactor;
+    CGFloat newHight = image.size.height * scaleFactor;
     CGSize newSize = CGSizeMake(width, newHight);
     CGRect newRect = CGRectMake(0, 0, width, newHight);
     

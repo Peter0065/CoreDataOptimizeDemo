@@ -1,5 +1,5 @@
 //
-//  Photo+CoreDataProperties.m
+//  OriginalImage+CoreDataProperties.h
 //  CoreDataDemo
 //
 //  Created by LinPeihuang on 16/9/4.
@@ -9,18 +9,15 @@
 //  to delete and recreate this implementation file for your updated model.
 //
 
-#import "Photo+CoreDataProperties.h"
+#import "OriginalImage.h"
 
-@implementation Photo (CoreDataProperties)
+NS_ASSUME_NONNULL_BEGIN
 
-@dynamic city;
-@dynamic createDate;
-@dynamic height;
-@dynamic photoID;
-@dynamic thumb;
-@dynamic uploadDate;
-@dynamic width;
-@dynamic originalImage;
-@dynamic usage;
+@interface OriginalImage (CoreDataProperties)
+
+@property (nullable, nonatomic, retain) NSData *image;
+@property (nullable, nonatomic, retain) Photo *photo;
 
 @end
+
+NS_ASSUME_NONNULL_END

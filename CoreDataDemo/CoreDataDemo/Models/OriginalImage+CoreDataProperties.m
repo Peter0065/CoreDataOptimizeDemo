@@ -1,5 +1,5 @@
 //
-//  Photo+CoreDataProperties.m
+//  OriginalImage+CoreDataProperties.m
 //  CoreDataDemo
 //
 //  Created by LinPeihuang on 16/9/4.
@@ -9,18 +9,11 @@
 //  to delete and recreate this implementation file for your updated model.
 //
 
-#import "Photo+CoreDataProperties.h"
+#import "OriginalImage+CoreDataProperties.h"
 
-@implementation Photo (CoreDataProperties)
+@implementation OriginalImage (CoreDataProperties)
 
-@dynamic city;
-@dynamic createDate;
-@dynamic height;
-@dynamic photoID;
-@dynamic thumb;
-@dynamic uploadDate;
-@dynamic width;
-@dynamic originalImage;
-@dynamic usage;
+@dynamic image;
+@dynamic photo;
 
 @end

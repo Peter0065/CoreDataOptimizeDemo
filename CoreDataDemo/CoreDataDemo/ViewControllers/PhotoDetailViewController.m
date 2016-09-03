@@ -17,7 +17,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.imageView.image = [UIImage imageWithData:self.photo.image];
+//<step_2>
+//    self.imageView.image = [UIImage imageWithData:self.photo.image];
+    self.imageView.image = [UIImage imageWithData:self.photo.originalImage.image];
+
 }
 
 @end

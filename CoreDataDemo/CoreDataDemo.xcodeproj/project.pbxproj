@@ -13,6 +13,8 @@
 		31E01C0D1D743DA70046A524 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31E01C0C1D743DA70046A524 /* Assets.xcassets */; };
 		31E01C101D743DA70046A524 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31E01C0E1D743DA70046A524 /* LaunchScreen.storyboard */; };
 		31E01C1B1D743DA70046A524 /* CoreDataDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E01C1A1D743DA70046A524 /* CoreDataDemoTests.m */; };
+		31EC2FF01D7B3852001BA894 /* OriginalImage+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EC2FED1D7B3852001BA894 /* OriginalImage+CoreDataProperties.m */; };
+		31EC2FF11D7B3852001BA894 /* OriginalImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EC2FEF1D7B3852001BA894 /* OriginalImage.m */; };
 		AC741A8D1D746FD900C33F35 /* seed.json in Resources */ = {isa = PBXBuildFile; fileRef = AC741A8C1D746FD900C33F35 /* seed.json */; };
 		AC741ACD1D7471FA00C33F35 /* PhotoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC741ACC1D7471FA00C33F35 /* PhotoTableViewController.m */; };
 		AC741AD01D74720600C33F35 /* CategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC741ACF1D74720600C33F35 /* CategoryTableViewController.m */; };
@@ -58,6 +60,10 @@
 		31E01C161D743DA70046A524 /* CoreDataDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreDataDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		31E01C1A1D743DA70046A524 /* CoreDataDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataDemoTests.m; sourceTree = "<group>"; };
 		31E01C1C1D743DA70046A524 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		31EC2FEC1D7B3852001BA894 /* OriginalImage+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OriginalImage+CoreDataProperties.h"; sourceTree = "<group>"; };
+		31EC2FED1D7B3852001BA894 /* OriginalImage+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OriginalImage+CoreDataProperties.m"; sourceTree = "<group>"; };
+		31EC2FEE1D7B3852001BA894 /* OriginalImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OriginalImage.h; sourceTree = "<group>"; };
+		31EC2FEF1D7B3852001BA894 /* OriginalImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OriginalImage.m; sourceTree = "<group>"; };
 		AC741A8C1D746FD900C33F35 /* seed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = seed.json; sourceTree = "<group>"; };
 		AC741ACB1D7471FA00C33F35 /* PhotoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoTableViewController.h; sourceTree = "<group>"; };
 		AC741ACC1D7471FA00C33F35 /* PhotoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoTableViewController.m; sourceTree = "<group>"; };
@@ -175,6 +181,10 @@
 				AC741FDD1D7AB23B00C33F35 /* Photo+CoreDataProperties.m */,
 				AC741FDE1D7AB23B00C33F35 /* Photo.h */,
 				AC741FDF1D7AB23B00C33F35 /* Photo.m */,
+				31EC2FEC1D7B3852001BA894 /* OriginalImage+CoreDataProperties.h */,
+				31EC2FED1D7B3852001BA894 /* OriginalImage+CoreDataProperties.m */,
+				31EC2FEE1D7B3852001BA894 /* OriginalImage.h */,
+				31EC2FEF1D7B3852001BA894 /* OriginalImage.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -341,12 +351,14 @@
 				AC741FE31D7AB23B00C33F35 /* Photo.m in Sources */,
 				AC741AD41D74735100C33F35 /* CoreDataStack.m in Sources */,
 				AC741AEB1D77153E00C33F35 /* PhotoDetailViewController.m in Sources */,
+				31EC2FF01D7B3852001BA894 /* OriginalImage+CoreDataProperties.m in Sources */,
 				31E01C051D743DA60046A524 /* AppDelegate.m in Sources */,
 				AC741AD71D74738B00C33F35 /* Model.xcdatamodeld in Sources */,
 				AC741AE81D770F8B00C33F35 /* PhotoViewCell.m in Sources */,
 				AC741FE01D7AB23B00C33F35 /* Usage+CoreDataProperties.m in Sources */,
 				AC741FE21D7AB23B00C33F35 /* Photo+CoreDataProperties.m in Sources */,
 				31E01C021D743DA60046A524 /* main.m in Sources */,
+				31EC2FF11D7B3852001BA894 /* OriginalImage.m in Sources */,
 				AC741ACD1D7471FA00C33F35 /* PhotoTableViewController.m in Sources */,
 				AC741AD01D74720600C33F35 /* CategoryTableViewController.m in Sources */,
 				AC741FE11D7AB23B00C33F35 /* Usage.m in Sources */,
