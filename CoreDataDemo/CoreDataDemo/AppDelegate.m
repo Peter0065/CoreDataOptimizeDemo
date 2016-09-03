@@ -13,8 +13,8 @@
 #import "PhotoTableViewController.h"
 #import "CategoryTableViewController.h"
 
-static NSInteger amountToImport = 200;
-static BOOL addUsageRecords = YES;
+static NSInteger amountToImport = 50;
+static BOOL addUsageRecords = NO;
 
 @interface AppDelegate ()
 @property (nonatomic, strong) CoreDataStack *coreDataStack;
@@ -103,10 +103,12 @@ static BOOL addUsageRecords = YES;
         photo.height = height;
         photo.width = width;
         
-        NSString *imageName = [NSString stringWithFormat:@"scenery_%.2d",arc4random_uniform(14) + 1];
+        NSString *imageName = [NSString stringWithFormat:@"scenery_%.2d",arc4random_uniform(10) + 1];
         NSURL *imageURL = [[NSBundle mainBundle] URLForResource:imageName withExtension:@"jpg"];
         NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
         photo.image = imageData;
+
+//        photo.image = [self imageData:imageData scaledToWidth:60.f];
 
 //        NSEntityDescription *originalImageEntity = [NSEntityDescription entityForName:@"Image" inManagedObjectContext:self.coreDataStack.mainContext];
 //        OriginalImage *originalImage = [[OriginalImage alloc] initWithEntity:originalImageEntity insertIntoManagedObjectContext:self.coreDataStack.mainContext];
