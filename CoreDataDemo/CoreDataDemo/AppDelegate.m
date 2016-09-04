@@ -14,8 +14,8 @@
 #import "PhotoTableViewController.h"
 #import "CategoryTableViewController.h"
 
-static NSInteger amountToImport = 50;
-static BOOL addUsageRecords = NO;
+static NSInteger amountToImport = 200;
+static BOOL addUsageRecords = YES;
 
 @interface AppDelegate ()
 @property (nonatomic, strong) CoreDataStack *coreDataStack;
@@ -139,7 +139,7 @@ static BOOL addUsageRecords = NO;
 }
 
 - (void)addUsagesRecordsToPhoto:(Photo *)photo {
-    NSInteger numberOfUsages = 10 + arc4random_uniform(20);
+    NSInteger numberOfUsages = 1000 + arc4random_uniform(2000);
     for (NSInteger i = 0; i < numberOfUsages; i ++) {
         Usage *usage = [NSEntityDescription insertNewObjectForEntityForName:@"Usage" inManagedObjectContext:self.coreDataStack.mainContext];
         usage.photo = photo;

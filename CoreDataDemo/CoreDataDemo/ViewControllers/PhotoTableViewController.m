@@ -72,7 +72,9 @@
 - (NSFetchRequest *)photoFetchRequest:(NSString *)city {
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
 //    [fetchRequest setReturnsObjectsAsFaults:NO];
-    [fetchRequest setRelationshipKeyPathsForPrefetching:@[@"usage"]];
+//    NSArray *array = @[ManagedObject];
+//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self IN %@", array];
+//    [fetchRequest setRelationshipKeyPathsForPrefetching:@[@"usage"]];
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"uploadDate" ascending:YES];
     fetchRequest.sortDescriptors = @[sortDescriptor];
     if (city) {

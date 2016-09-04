@@ -13,16 +13,16 @@
         <attribute name="uploadDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="width" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="originalImage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="OriginalImage" inverseName="photo" inverseEntity="OriginalImage" syncable="YES"/>
-        <relationship name="usage" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Usage" inverseName="photo" inverseEntity="Usage" syncable="YES"/>
+        <relationship name="usages" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Usage" inverseName="photo" inverseEntity="Usage" syncable="YES"/>
     </entity>
     <entity name="Usage" representedClassName="Usage" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="detail" optional="YES" attributeType="Integer 16" maxValueString="5" defaultValueString="0" syncable="YES"/>
-        <relationship name="photo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Photo" inverseName="usage" inverseEntity="Photo" syncable="YES"/>
+        <relationship name="photo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Photo" inverseName="usages" inverseEntity="Photo" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Photo" positionX="-45" positionY="0" width="128" height="178"/>
-        <element name="Usage" positionX="205" positionY="90" width="128" height="90"/>
         <element name="OriginalImage" positionX="205" positionY="-9" width="128" height="73"/>
+        <element name="Photo" positionX="-45" positionY="0" width="128" height="180"/>
+        <element name="Usage" positionX="205" positionY="90" width="128" height="90"/>
     </elements>
 </model>

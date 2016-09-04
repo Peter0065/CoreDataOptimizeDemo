@@ -26,7 +26,6 @@
 
 - (void)prepareForReuse {
     [super prepareForReuse];
-   // [self.thumb sd_cancelCurrentImageLoad];
 }
 
 - (void)setPhoto:(Photo *)photo {

@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSNumber *width;
 //<step_2>
 @property (nullable, nonatomic, retain) OriginalImage *originalImage;
-@property (nullable, nonatomic, retain) NSSet<Usage *> *usage;
+@property (nullable, nonatomic, retain) NSSet<Usage *> *usages;
 
 @end
 

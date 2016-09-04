@@ -21,6 +21,6 @@
 @dynamic uploadDate;
 @dynamic width;
 @dynamic originalImage;
-@dynamic usage;
+@dynamic usages;
 
 @end
