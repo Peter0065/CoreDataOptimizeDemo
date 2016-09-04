@@ -71,6 +71,8 @@
 
 - (NSFetchRequest *)photoFetchRequest:(NSString *)city {
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
+//<step_3>
+    fetchRequest.fetchBatchSize = 10.f;
 //    [fetchRequest setReturnsObjectsAsFaults:NO];
 //    NSArray *array = @[ManagedObject];
 //    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self IN %@", array];

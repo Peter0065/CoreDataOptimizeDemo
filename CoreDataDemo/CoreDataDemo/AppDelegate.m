@@ -14,7 +14,7 @@
 #import "PhotoTableViewController.h"
 #import "CategoryTableViewController.h"
 
-static NSInteger amountToImport = 200;
+static NSInteger amountToImport = 600;
 static BOOL addUsageRecords = YES;
 
 @interface AppDelegate ()
