@@ -60,10 +60,10 @@
         abort();
     }
     
-//    NSLog(@"%@",[self.fetchResultsController.fetchedObjects firstObject]);
-//
-//    NSArray *result = [self.coreDataStack.mainContext executeFetchRequest:self.fetchResultsController.fetchRequest error:nil];
-//    NSLog(@"%@",[result firstObject]);
+    NSLog(@"%@",[self.fetchResultsController.fetchedObjects firstObject]);
+
+    NSArray *result = [self.coreDataStack.mainContext executeFetchRequest:self.fetchResultsController.fetchRequest error:nil];
+    NSLog(@"%@",[result firstObject]);
 
     
     return  self.fetchResultsController;
@@ -77,6 +77,7 @@
 //    NSArray *array = @[ManagedObject];
 //    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self IN %@", array];
 //    [fetchRequest setRelationshipKeyPathsForPrefetching:@[@"usage"]];
+    fetchRequest.includesPropertyValues = NO;
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"uploadDate" ascending:YES];
     fetchRequest.sortDescriptors = @[sortDescriptor];
     if (city) {

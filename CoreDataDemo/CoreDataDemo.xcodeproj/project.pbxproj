@@ -13,6 +13,7 @@
 		31E01C0D1D743DA70046A524 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31E01C0C1D743DA70046A524 /* Assets.xcassets */; };
 		31E01C101D743DA70046A524 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31E01C0E1D743DA70046A524 /* LaunchScreen.storyboard */; };
 		31E01C1B1D743DA70046A524 /* CoreDataDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E01C1A1D743DA70046A524 /* CoreDataDemoTests.m */; };
+		31E02CC11D7DC2DB00712F79 /* CategoryTableViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E02CC01D7DC2DB00712F79 /* CategoryTableViewControllerTests.m */; };
 		31EC2FF01D7B3852001BA894 /* OriginalImage+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EC2FED1D7B3852001BA894 /* OriginalImage+CoreDataProperties.m */; };
 		31EC2FF11D7B3852001BA894 /* OriginalImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EC2FEF1D7B3852001BA894 /* OriginalImage.m */; };
 		AC741A8D1D746FD900C33F35 /* seed.json in Resources */ = {isa = PBXBuildFile; fileRef = AC741A8C1D746FD900C33F35 /* seed.json */; };
@@ -60,6 +61,7 @@
 		31E01C161D743DA70046A524 /* CoreDataDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreDataDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		31E01C1A1D743DA70046A524 /* CoreDataDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataDemoTests.m; sourceTree = "<group>"; };
 		31E01C1C1D743DA70046A524 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		31E02CC01D7DC2DB00712F79 /* CategoryTableViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryTableViewControllerTests.m; sourceTree = "<group>"; };
 		31EC2FEC1D7B3852001BA894 /* OriginalImage+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OriginalImage+CoreDataProperties.h"; sourceTree = "<group>"; };
 		31EC2FED1D7B3852001BA894 /* OriginalImage+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OriginalImage+CoreDataProperties.m"; sourceTree = "<group>"; };
 		31EC2FEE1D7B3852001BA894 /* OriginalImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OriginalImage.h; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 			children = (
 				31E01C1A1D743DA70046A524 /* CoreDataDemoTests.m */,
 				31E01C1C1D743DA70046A524 /* Info.plist */,
+				31E02CC01D7DC2DB00712F79 /* CategoryTableViewControllerTests.m */,
 			);
 			path = CoreDataDemoTests;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				31E01C1B1D743DA70046A524 /* CoreDataDemoTests.m in Sources */,
+				31E02CC11D7DC2DB00712F79 /* CategoryTableViewControllerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

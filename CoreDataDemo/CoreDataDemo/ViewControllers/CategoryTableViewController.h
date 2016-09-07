@@ -10,4 +10,7 @@
 #import "CoreDataStack.h"
 @interface CategoryTableViewController : UITableViewController
 @property (nonatomic, strong) CoreDataStack *coreDataStack;
+
+- (NSArray *)totalPhotosPerCity;
+- (NSArray *)totalPhotosPerCityFast;
 @end
